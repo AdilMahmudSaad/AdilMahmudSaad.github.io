@@ -34,7 +34,19 @@
 
 <body class="dark"> 
 	
-<audio id="audioID" loop autoplay> <source src="unstoppable.mp3"  type="audio/mp3"></audio>
+<audio id="Test_Audio"
+		 autoplay loop>
+		<source src="unstopabble.mp3" type="audio/mpeg">
+	</audio>
+
+
+	<script>
+		function My_Audio() {
+			var a =
+			document.getElementById("Test_Audio").autoplay;
+			document.getElementById("test").innerHTML = a;
+		}
+	</script>
 
 
 	<!-- PRELOADER -->
