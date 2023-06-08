@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Focusss</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="./Focusss_files/css2" rel="stylesheet">
+  <link rel="stylesheet" href="./Focusss_files/normalize.min.css">
+  <link rel="stylesheet" href="./Focusss_files/style.css">
+
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<canvas width="1920" height="904"></canvas>
+
+<div class="form-wrapper">
+  <form id="login-form" onsubmit="login(event)">
+    <hgroup>
+      <h1>Focusss</h1>
+      <h3>Form focus without outlines by <a href="" tabindex="-1">@hakimel</a>.</h3>
+    </hgroup>
+
+    <label for="name">Name</label>
+    <input type="text" id="name" class="valid">
+    
+    <label for="email">Email</label>
+    <input type="email" id="email" class="valid">
+    
+    <label for="password">Password</label>
+    <input type="password" id="password" class="valid">
+    
+    <div class="checkbox">
+      <input type="checkbox" id="check1" class="valid">
+      <label for="check1">I accept the terms</label><br>
+    </div>
+    
+    <div class="checkbox">
+      <input type="checkbox" id="check2" class="valid">
+      <label for="check2">Pineapple on pizza is a crime</label><br>
+    </div>
+    
+        <div class="button-wrapper">
+      <button style="transition: all 0.1s ease 0s; transform: translate(0px, 0px) rotateX(0deg) rotateY(0deg); box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px;" type="submit" >Submit</button>
+
+    </div>
+  </form>
+</div>
+<!-- partial -->
+<script src="./Focusss_files/script.js.download"></script>
+ <script>
+      const button = document.querySelector( 'button' );
+
+      const distanceBetween = ( p1x, p1y, p2x, p2y ) => {
+        const dx = p1x-p2x;
+        const dy = p1y-p2y;
+        return Math.sqrt( dx*dx + dy*dy );
+      };
+
+      document.addEventListener( 'mousemove', event => {
+        const radius = Math.max( button.offsetWidth*0.75, button.offsetHeight*0.75, 100 );
+
+        const bx = button.parentNode.offsetLeft + button.offsetLeft + button.offsetWidth/2;
+        const by = button.parentNode.offsetTop + button.offsetTop + button.offsetHeight/2;
+
+        const dist = distanceBetween( event.clientX, event.clientY, bx, by );
+        const angle = Math.atan2( event.clientY - by, event.clientX - bx );
+
+        const ox = -1 * Math.cos( angle ) * Math.max( ( radius - dist ), 0 );
+        const oy = -1 * Math.sin( angle ) * Math.max( ( radius - dist ), 0 );
+
+        const rx = oy / 2;
+        const ry = -ox / 2;
+
+        button.style.transition = `all .05s ease`;
+        button.style.transform = `translate(${ox}px, ${oy}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+        button.style.boxShadow = `0px ${Math.abs(oy)}px ${Math.abs(oy)/radius*40}px rgba(0,0,0,0.15)`;
+      } );
+
+      const nocheat = () => button.textContent = 'No cheating 🙅‍♂️';
+      const notouch = () => button.textContent = 'This thing doesn\'t work with touch 😢';
+
+      button.addEventListener( 'click', event => button.textContent = 'You win 🎉🙃' );
+      button.addEventListener( 'keydown', event => { event.preventDefault(); nocheat(); } );
+      button.click = nocheat;
+
+      if( navigator.userAgent.match( /Android|iPhone|iPad|iPod/i ) ) notouch();
+      window.addEventListener( 'touchstart', notouch );
+    </script>
+
+</body>
+</html>
